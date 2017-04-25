@@ -1,13 +1,13 @@
 package com.nibado.example.antlr;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 /*
  * Test set that tests different expressions against their expected results.
@@ -35,8 +35,8 @@ public class ExpressionParserTest {
 
     @Test
     public void testTimes() {
-        assertThat(_parser.parse("21 * 2"), equalTo(42));
-        assertThat(_parser.parse("21 times 2"), equalTo(42));
+        assertThat(_parser.parse("21 *    2"), equalTo(42));
+        assertThat(_parser.parse("21 times    2"), equalTo(42));
     }
 
     @Test

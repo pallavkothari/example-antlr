@@ -1,18 +1,12 @@
 package com.nibado.example.antlr;
 
-import java.util.BitSet;
-import java.util.Locale;
-
-import org.antlr.v4.runtime.ANTLRErrorListener;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
+import com.nibado.example.antlr.SimpleParser.ExprContext;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 
-import com.nibado.example.antlr.SimpleParser.ExprContext;
+import java.util.BitSet;
+import java.util.Locale;
 
 public class ExpressionParser {
     private final ANTLRErrorListener _listener = createErrorListener();
@@ -51,7 +45,6 @@ public class ExpressionParser {
          * The ExprContext is the root of our Abstract Syntax Tree
          */
         final ExprContext context = parser.expr();
-
         /*
          * 'Visit' all the branches of the tree to get our expression result.
          */
@@ -107,4 +100,10 @@ public class ExpressionParser {
         };
     }
 
+    public static class Listener extends SimpleBaseListener {
+        @Override
+        public void enterNumber(SimpleParser.NumberContext ctx) {
+            System.out.println(ctx);
+        }
+    }
 }
